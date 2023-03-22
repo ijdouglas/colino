@@ -61,7 +61,7 @@ rescale <- function(x)
 #' @export
 pull_importances.default <- function(object, scaled = TRUE, ...) {
   message(paste(
-    "No method for pulling feature importances is defined for",
+    "No method for pulling feature importances is defined for: ",
     class(object)[1]
   ))
 }
