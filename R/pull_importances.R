@@ -197,6 +197,27 @@ pull_importances._lm <-
   }
 
 #' @export
+pull_importances._lme <-
+  function(object,
+           scaled = FALSE,
+           intercept = FALSE,
+           ...) {
+
+    scores <- tibble(
+      feature = names(stats::coefficients(object$fit)),
+      importance = stats::coefficients(object$fit)
+    )
+
+    if (!intercept)
+      scores <- scores[scores$feature != "(Intercept)",]
+
+    if (scaled)
+      scores$importance <- rescale(abs(scores$importance))
+
+    scores
+  }
+
+#' @export
 pull_importances._glm <-
   function(object,
            scaled = FALSE,
